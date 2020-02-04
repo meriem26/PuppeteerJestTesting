@@ -30,4 +30,13 @@ describe("Home Page title", () => {
     },
     timeout
   );
+  test('More top stories',
+  async()=>{
+      const moreTopStories= await page.$('.top-stories__title');
+      const html = await page.evaluate(
+        moreTopStories => moreTopStories.innerHTML,
+        moreTopStories
+      );
+  }
+  )
 });
