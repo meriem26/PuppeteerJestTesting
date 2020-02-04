@@ -30,13 +30,28 @@ describe("Home Page title", () => {
     },
     timeout
   );
-  test('More top stories',
-  async()=>{
-      const moreTopStories= await page.$('.top-stories__title');
+  test(
+    "More top stories",
+    async () => {
+      const moreTopStories = await page.$(".top-stories__title-text__inner");
       const html = await page.evaluate(
         moreTopStories => moreTopStories.innerHTML,
         moreTopStories
       );
-  }
-  )
+      expect(html).toBe("More top stories");
+    },
+    timeout
+  );
+  test(
+    "Top stories Promos",
+    async () => {
+      const topStoriesPromos = await page.$$(
+        "section:nth-child(3) > div > div > div > div"
+      );
+   
+
+      expect(topStoriesPromos.length).toEqual(3);
+    },
+    timeout
+  );
 });
