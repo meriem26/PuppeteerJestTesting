@@ -48,7 +48,6 @@ describe("Home Page title", () => {
       const topStoriesPromos = await page.$$(
         "section:nth-child(3) > div > div > div > div"
       );
-   
 
       expect(topStoriesPromos.length).toEqual(3);
     },
