@@ -1,2 +1,2 @@
 # Puppeteer Jest 
-- Write end to end tests
+- Write suite of  end to end tests.
