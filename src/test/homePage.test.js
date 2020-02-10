@@ -53,4 +53,24 @@ describe("Home Page title", () => {
     },
     timeout
   );
+  test(
+    "News headlines",
+    async () => {
+      const newHeadlines = await page.$(
+        "#orb-modules > div.hp-modules > section.hp-module.top-stories-container.hp-module--duo.hp-module--duo-all-thumbnails.hp-module--light-theme.hp-module--duo-odd > div > div > a > h2 > span > span"
+      );
+
+      const htmlh2 = await page.evaluate(
+        newHeadlines => newHeadlines.innerHTML,
+        newHeadlines
+      );
+      expect(htmlh2).toBe("News headlines");
+    },
+    timeout
+  );
+  it("Clicking the News headlines link", async () => {
+    await page.click(".top-stories__link-title");
+    const currentPage = page.url();
+    expect(currentPage).toMatch("https://www.bbc.co.uk/news");
+  });
 });
