@@ -56,9 +56,7 @@ describe("Home Page title", () => {
   test(
     "News headlines",
     async () => {
-      const newHeadlines = await page.$(
-        "#orb-modules > div.hp-modules > section.hp-module.top-stories-container.hp-module--duo.hp-module--duo-all-thumbnails.hp-module--light-theme.hp-module--duo-odd > div > div > a > h2 > span > span"
-      );
+      const newHeadlines = await page.waitForXPath("//span[contains(text(),'News headlines')]");
 
       const htmlh2 = await page.evaluate(
         newHeadlines => newHeadlines.innerHTML,
