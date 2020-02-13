@@ -56,7 +56,9 @@ describe("Home Page title", () => {
   test(
     "News headlines",
     async () => {
-      const newHeadlines = await page.waitForXPath("//span[contains(text(),'News headlines')]");
+      const newHeadlines = await page.waitForXPath(
+        "//span[contains(text(),'News headlines')]"
+      );
 
       const htmlh2 = await page.evaluate(
         newHeadlines => newHeadlines.innerHTML,
@@ -66,9 +68,19 @@ describe("Home Page title", () => {
     },
     timeout
   );
-  it("Clicking the News headlines link", async () => {
-    await page.click(".top-stories__link-title");
+  it(
+    "Clicking the News headlines link",
+    async () => {
+      await page.click("section:nth-child(4) > div a.top-stories__link-title ");
+      const currentPage = page.url();
+      expect(currentPage).toMatch("https://www.bbc.co.uk/news");
+    },
+    timeout
+  );
+  test("Clicking the Sport headlines link", async () => {
+    await page.goto(BBC, { waitUntil: "domcontentloaded" });
+    await page.click("section:nth-child(5) > div a.top-stories__link-title");
     const currentPage = page.url();
-    expect(currentPage).toMatch("https://www.bbc.co.uk/news");
+    expect(currentPage).toMatch("https://www.bbc.co.uk/sport");
   });
 });
